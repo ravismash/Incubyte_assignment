@@ -122,4 +122,22 @@ public class StringCalculatorTest {
 		System.out.println("The add method was invoked " + addMethodCounter + " time(s).");
 	}
 
+	@Test
+	public void testInputWithOnlyDelimiters() {
+		int result = calculator.add("//[;]\n;;;;");
+		assertEquals("Input with only delimiters should return 0", result, 0);
+	}
+
+	@Test
+	public void testSingleNumberWithCustomDelimiter() {
+		int result = calculator.add("//;\n5");
+		assertEquals("Single number with custom delimiter should return the number itself", result, 5);
+	}
+
+	@Test
+	public void testMultipleNumbersWithCustomDelimiter() {
+		int result = calculator.add("//;\n1;2;3");
+		assertEquals("Multiple numbers with custom delimiter should return their sum", result, 6);
+	}
+
 }
